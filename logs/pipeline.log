@@ -88,3 +88,258 @@ Duplicate Records : 1
 Missing Values : 4
 Processing Time : 5.00 seconds
 2026-10-06 02:42:51,130 | INFO | Pipeline completed.
+2026-10-06 23:28:29,365 | INFO | Pipeline started.
+2026-10-06 23:28:29,365 | INFO | Config loaded.
+2026-10-06 23:28:33,482 | ERROR | Pipeline failed.
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connection.py", line 239, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connectionpool.py", line 499, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connection.py", line 567, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\XPRISTO\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1381, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\XPRISTO\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1141, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\XPRISTO\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1085, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connection.py", line 398, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connection.py", line 254, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\util\retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /students (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\app\sources\api_source.py", line 60, in extract
+    response = requests.get(self.url, timeout=self.timeout_seconds)
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /students (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\main.py", line 76, in main
+    api_raw = extract_api_data(config["sources"]["api"])
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\app\sources\api_source.py", line 113, in extract_api_data
+    return APISource(config).extract()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\app\sources\api_source.py", line 67, in extract
+    raise APISourceError(f"API connection error for {self.url}.") from exc
+app.sources.api_source.APISourceError: API connection error for http://localhost:8000/students.
+2026-10-06 23:31:31,944 | INFO | Pipeline started.
+2026-10-06 23:31:31,945 | INFO | Config loaded.
+2026-10-06 23:31:36,032 | ERROR | Pipeline failed.
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connection.py", line 239, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connectionpool.py", line 499, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connection.py", line 567, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\XPRISTO\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1381, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\XPRISTO\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1141, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\XPRISTO\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1085, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connection.py", line 398, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connection.py", line 254, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\urllib3\util\retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /students (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\app\sources\api_source.py", line 60, in extract
+    response = requests.get(self.url, timeout=self.timeout_seconds)
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\.venv\Lib\site-packages\requests\adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /students (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\main.py", line 76, in main
+    api_raw = extract_api_data(config["sources"]["api"])
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\app\sources\api_source.py", line 113, in extract_api_data
+    return APISource(config).extract()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\app\sources\api_source.py", line 67, in extract
+    raise APISourceError(f"API connection error for {self.url}.") from exc
+app.sources.api_source.APISourceError: API connection error for http://localhost:8000/students.
+2026-10-06 23:35:50,956 | INFO | Pipeline started.
+2026-10-06 23:35:50,958 | INFO | Config loaded.
+2026-10-06 23:35:53,069 | INFO | Sources extracted: CSV=14, API=13, DATABASE=12 records.
+2026-10-06 23:35:53,504 | ERROR | Pipeline failed.
+Traceback (most recent call last):
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\main.py", line 92, in main
+    mongodb_raw = extract_mongodb_data(mongodb_config)
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\app\sources\mongodb_source.py", line 121, in extract_mongodb_data
+    return MongoDBSource(config, client_factory=client_factory).extract()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\XPRISTO\Desktop\ww\paep-student-data-pipeline-final-project\app\sources\mongodb_source.py", line 96, in extract
+    raise MongoDBSourceError(
+        f"MongoDB collection '{self.database}.{self.collection}' is empty"
+    )
+app.sources.mongodb_source.MongoDBSourceError: MongoDB collection 'paep_student_pipeline.student_profiles' is empty
+2026-10-06 23:47:33,734 | INFO | Pipeline started.
+2026-10-06 23:47:33,734 | INFO | Config loaded.
+2026-10-06 23:47:35,824 | INFO | Sources extracted: CSV=14, API=13, DATABASE=12 records.
+2026-10-06 23:47:36,251 | INFO | MongoDB source extracted: 12 records.
+2026-10-06 23:47:37,763 | INFO | Web scraping pipeline completed: 10 quote records written.
+2026-10-06 23:47:37,849 | INFO | Source validation completed: 6 rejected records collected.
+2026-10-06 23:47:37,862 | INFO | Cleaning completed.
+2026-10-06 23:47:37,889 | INFO | Integration completed: 8 integrated records.
+2026-10-06 23:47:37,906 | INFO | Incremental comparison completed: 8 new/changed, 0 unchanged, 0 reused rows.
+2026-10-06 23:47:37,906 | INFO | Starting student data transformation for 8 records.
+2026-10-06 23:47:37,911 | INFO | Replaced 1 missing major values with Unknown.
+2026-10-06 23:47:37,913 | INFO | Imputed 1 missing GPA values with median 3.00.
+2026-10-06 23:47:37,914 | INFO | Imputed 1 missing attendance values with median 85.00.
+2026-10-06 23:47:37,922 | INFO | Completed student data transformation for 8 records.
+2026-10-06 23:47:37,925 | INFO | Transformation completed.
+2026-10-06 23:47:37,946 | INFO | Final validation completed.
+2026-10-06 23:47:37,961 | INFO | Outputs written.
+2026-10-06 23:47:37,970 | INFO | Incremental state saved.
+2026-10-06 23:47:38,024 | INFO | Final dataset loaded to MongoDB collection paep_student_pipeline.final_students.
+2026-10-06 23:47:38,025 | INFO | ---
+## PIPELINE EXECUTION SUMMARY
+
+CSV Records : 14
+API Records : 13
+Database Records : 12
+Integrated Records : 8
+Valid Records : 8
+Rejected Records : 6
+Duplicate Records : 1
+Missing Values : 4
+Processing Time : 4.30 seconds
+2026-10-06 23:47:38,025 | INFO | Pipeline completed.
